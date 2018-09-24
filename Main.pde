@@ -24,10 +24,3 @@ void setup(){
    } 
    
  }
-<<<<<<< HEAD
-
-=======
-   
-//this is my comment
-//now there are two comments here
->>>>>>> 5dfe17e0902b06693db202d68603525cd3e509be
