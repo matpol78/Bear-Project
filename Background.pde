@@ -5,6 +5,7 @@ public class Grid{
   public int gridSpaceWidth = width/numLinesWidth;
   public int gridSpaceHeight = height/numLinesHeight;
   float gridThick = 2;
+  ajsldkfjasldjfasdklfj;
   
   public Grid(){
   }
