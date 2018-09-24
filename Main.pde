@@ -24,8 +24,3 @@ void setup(){
    } 
    
  }
-<<<<<<< HEAD
-=======
-
-//edit made to master
->>>>>>> 3ab1a12ac1c5353543538c31d2b06ccdc486cbb5
