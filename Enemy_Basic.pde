@@ -13,6 +13,11 @@ class EnemyBasic {
 	
 	public EnemyBasic() {}
 	
+	public void setPos(int x, int y) {
+		posX = x;
+		posY = y;
+	}
+	
 	private void updatePos() {
 		if (posY >= settings.screenHeight-100) {
 			dy = 0;

@@ -1,9 +1,11 @@
+import java.util.*;
 Grid grid;
 Base base;
 Shield shield;
-EnemyBasic enemy1;
 Settings settings;
-int i = 0;
+
+List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
+
 
 
 void setup(){
@@ -12,7 +14,7 @@ void setup(){
   grid = new Grid();
   base = new Base();
   shield = new Shield();
-  enemy1 = new EnemyBasic();
+  basicEnemies.add(new EnemyBasic());
   settings = new Settings();
   
 
@@ -20,17 +22,37 @@ void setup(){
 }
 
  void draw() {
+	checkKeyPresses();
    background(0, 0, 0);
    grid.display();
    base.display();
-   shield.display();
-   i++;
-   if(i > 150)
-   {
-     base.giveShield();
-   } 
-   
-   enemy1.display();
+   shield.display();   
+   displayEnemies();
 
    
+ } 
+ 
+ void checkKeyPresses(){
+	if (keyPressed) {
+		if(key == 'q') {
+			//enemy1.setPos(mouseX,mouseY);
+		}
+		
+		
+		
+	}
+	
+	if (mousePressed) {
+		//enemy1.setPos(mouseX,mouseY);
+		basicEnemies.add(new EnemyBasic());
+	}
+	
+	
+ }
+ 
+ void displayEnemies() {
+	for (int i = 0; i < basicEnemies.size(); i++) {
+		basicEnemies.get(i).display();
+	}
+	 
  }
