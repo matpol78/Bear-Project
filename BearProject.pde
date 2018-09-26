@@ -1,6 +1,8 @@
 Grid grid;
 Base base;
 Shield shield;
+EnemyBasic enemy1;
+Settings settings;
 int i = 0;
 
 
@@ -10,6 +12,9 @@ void setup(){
   grid = new Grid();
   base = new Base();
   shield = new Shield();
+  enemy1 = new EnemyBasic();
+  settings = new Settings();
+  
 
   
 }
@@ -24,6 +29,8 @@ void setup(){
    {
      base.giveShield();
    } 
+   
+   enemy1.display();
 
    
  }
