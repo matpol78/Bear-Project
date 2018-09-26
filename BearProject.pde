@@ -13,7 +13,7 @@ void setup(){
   base = new Base();
   shield = new Shield();
   enemy1 = new EnemyBasic();
-  settings = new settings();
+  settings = new Settings();
   
 
   
