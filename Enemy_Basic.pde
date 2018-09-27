@@ -63,6 +63,7 @@ class EnemyBasic {
 	public int getY() {
 		return posY;
 	}
+
 	
 	
 	
