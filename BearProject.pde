@@ -1,10 +1,13 @@
 import java.util.*;
+import java.util.Random;
+
 Grid grid;
 Base base;
 Shield shield;
 Settings settings;
 
 List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
+List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 
 
 
@@ -26,7 +29,8 @@ void setup(){
    background(0, 0, 0);
    grid.display();
    base.display();
-   shield.display();   
+   shield.display(); 
+	displayBulletLaser1();
    displayEnemies();
 
    
@@ -35,7 +39,21 @@ void setup(){
  void checkKeyPresses(){
 	if (keyPressed) {
 		if(key == 'q') {
-			//enemy1.setPos(mouseX,mouseY);
+			if (basicEnemies.size() > 0 ) {
+				basicEnemies.remove(0);
+			}
+			
+		}
+		if (key == 'r') {
+			for(int i =0; i < basicEnemies.size(); i++) {
+				basicEnemies.get(i).reverseY();
+			}
+		}
+		if (key == 'n') {
+			basicEnemies.add(new EnemyBasic());
+		}
+		if (key == 'b') {
+			spawnBullets();
 		}
 		
 		
@@ -44,10 +62,15 @@ void setup(){
 	
 	if (mousePressed) {
 		//enemy1.setPos(mouseX,mouseY);
-		basicEnemies.add(new EnemyBasic());
+		basicEnemies.add(new EnemyBasic(mouseX,mouseY));
 	}
 	
 	
+ }
+ void displayBulletLaser1() {
+	 for (int i = 0; i < bulletLaser1.size(); i++) {
+		 bulletLaser1.get(i).display();
+	 }
  }
  
  void displayEnemies() {
@@ -55,4 +78,10 @@ void setup(){
 		basicEnemies.get(i).display();
 	}
 	 
+ }
+ 
+ void spawnBullets() {
+	 for (int i = 0; i < basicEnemies.size(); i++) {
+		 bulletLaser1.add(new BulletLaser1(basicEnemies.get(i).getX(), basicEnemies.get(i).getY()));
+	 }
  }

@@ -21,6 +21,9 @@ class Base{
   public void giveShield(){
     shield = true;
   }
+  public void removeShield(){
+	  shield = false;
+  }
   
   public void giveBaseTurret(){
     baseTurret = true;
