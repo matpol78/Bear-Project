@@ -10,6 +10,10 @@ class BulletLaser1 {
 	private int damage;
 	private int posX;
 	private int posY;
+	private PImage explosion = loadImage("explosion.png");
+	private int explosionHeigh = 70;
+	private int explosionWidth = 70;
+	private boolean allreadyExploded = false;
 	
 	public BulletLaser1() {}
 	
@@ -24,7 +28,14 @@ class BulletLaser1 {
 		if (posY >= settings.screenHeight-100) {
 			dy = 0;
 			dx = 0;
-			shield.damageShield(5);
+			if (allreadyExploded) {
+				
+			}
+			else {
+				allreadyExploded = true;
+				shield.damageShield(5);
+				image(explosion,posX,posY,explosionWidth,explosionHeigh);
+			}
 		}
 		else {
 			posX += speed*dx;
@@ -35,8 +46,15 @@ class BulletLaser1 {
 	}
 	
 	public void display() {
-		updatePos();
-		image(bullet,posX,posY,imageWidth,imageHeight);
+		if (allreadyExploded) {
+			
+		}
+		else {
+			updatePos();
+			image(bullet,posX,posY,imageWidth,imageHeight);
+		}
+		
+		
 	}
 	
 
