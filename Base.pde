@@ -28,5 +28,14 @@ class Base{
   public void giveBaseTurret(){
     baseTurret = true;
   }
+  
+  public int getHealth(){
+	  return health;
+  }
+  public void damageBase(int damage) {
+	health = health - damage;
+	  
+  }
+  
 }
 

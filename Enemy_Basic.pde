@@ -1,19 +1,21 @@
 class EnemyBasic {
 	
-	private int health;
-	private int damage;
+	private int health; //has not been implemented
+	private int damage; //damage is currently linked to projectile type, this does nothing right now
+	//position variables
 	private int posX;
 	private int posY;
 	private double speed = .005;
 	private double dy; 
 	private double dx;
+	//image variables
 	private int imageHeight = 60;
 	private int imageWidth = 60;
 	private PImage model = loadImage("Enemy_Basic_Model.jpg");
 	 
 	
 	
-	
+	//constructors
 	public EnemyBasic() {
 		Random rand = new Random();
 		posX = rand.nextInt(width)+0;
@@ -30,20 +32,19 @@ class EnemyBasic {
 		
 	}
 	
-	public void setPos(int x, int y) {
-		posX = x;
-		posY = y;
-	}
+	//this function is tied to 'r' key press and will need to be removed when done with it
 	public void reverseY() {
 		dy = -1*dy;
 	}
-	
+	//animates the movement of the ship
 	private void updatePos() {
-		if (posY >= settings.screenHeight-100) {
+		//stops the ship moving at some Y value
+		if (posY >= settings.screenHeight-300) {
 			dy = 0;
 			dx = 0;
-			shield.damageShield(5);
+			
 		}
+		//regular ship animation
 		else {
 			posX += speed*dx;
 			posY += speed*dy;
@@ -52,11 +53,12 @@ class EnemyBasic {
 		}
 	}
 	
+	//displays the ship, called from main
 	public void display() {
 		updatePos();
 		image(model,posX,posY, imageWidth, imageHeight);
 	}
-	
+	//position getters
 	public int getX(){
 		return posX;
 	}

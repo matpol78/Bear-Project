@@ -5,6 +5,10 @@ class Shield{
   
   public Shield(){}
   
+  public int getHealth(){
+	  return health;
+  }
+  
   public void display(){
 		
     if(base.shield)
