@@ -5,6 +5,7 @@ Grid grid;
 Base base;
 Shield shield;
 Settings settings;
+DisplayUI displayUI;
 List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
 List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 List<BulletLaser2> bulletLaser2 = new ArrayList<BulletLaser2>();
@@ -20,6 +21,7 @@ void setup(){
   shield = new Shield();
   basicEnemies.add(new EnemyBasic());
   settings = new Settings();
+  displayUI = new DisplayUI();
   
   
 
@@ -39,6 +41,7 @@ void setup(){
    displayBulletLaser1();
    displayBulletLaser2();
    displayEnemies();
+   displayUI.display();
    settings.timer++;
 
    
@@ -69,14 +72,13 @@ void setup(){
 	}
 	
 	if (mousePressed) {
-		//enemy1.setPos(mouseX,mouseY);
 		basicEnemies.add(new EnemyBasic(mouseX,mouseY));
 	}
 	
 	
  }
  void displayBulletLaser1() {
-	 stroke(0,255,0);
+	 
 	 for (int i = bulletLaser1.size()-1; i >= 0; i--) {
 		 if (bulletLaser1.get(i).exploded()) {
 			bulletLaser1.remove(i);
@@ -88,7 +90,7 @@ void setup(){
 	 }
  }
   void displayBulletLaser2() {
-	  stroke(255,0,0);
+	  
 	 for (int i = bulletLaser2.size()-1; i >= 0; i--) {
 		 if (bulletLaser2.get(i).exploded()) {
 			bulletLaser2.remove(i);
