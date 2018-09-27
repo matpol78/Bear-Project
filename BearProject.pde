@@ -1,11 +1,13 @@
 import java.util.*;
 import java.util.Random;
+import static java.lang.Math.sqrt;
 
 Grid grid;
 Base base;
 Shield shield;
 Settings settings;
 DisplayUI displayUI;
+BaseTurret baseTurret;
 List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
 List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 List<BulletLaser2> bulletLaser2 = new ArrayList<BulletLaser2>();
@@ -22,6 +24,7 @@ void setup(){
   basicEnemies.add(new EnemyBasic());
   settings = new Settings();
   displayUI = new DisplayUI();
+  baseTurret = new BaseTurret();
   
   
 
@@ -42,6 +45,7 @@ void setup(){
    displayBulletLaser2();
    displayEnemies();
    displayUI.display();
+   baseTurret.display();
    settings.timer++;
 
    

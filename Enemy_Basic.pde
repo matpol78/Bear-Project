@@ -65,6 +65,13 @@ class EnemyBasic {
 	public int getY() {
 		return posY;
 	}
+	
+	public int getDistanceFromBaseX(){
+		return (width/2-posX);
+	}
+	public int getDistanceFromBaseY() {
+		return (height-posY);
+	}
 
 	
 	
