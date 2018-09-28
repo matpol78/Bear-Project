@@ -12,13 +12,17 @@ BaseTurret baseTurret;
 List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
 List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 List<BulletLaser2> bulletLaser2 = new ArrayList<BulletLaser2>();
-
+int gameScreen = 0;
+//gameScreen = 0: initital screen
+//gameScreen = 1: playing the game
+//gameScreen = 2: settings
 
 
 void setup(){
 	//size(1280,720);
   size(1700, 900);
   frameRate(30);
+  textAlign(CENTER);
   grid = new Grid();
   base = new Base();
   shield = new Shield();
@@ -35,6 +39,13 @@ void setup(){
 //backgroundImage.resize(1700,900);
 
  void draw() {
+	 if(gameScreen == 0)
+	 {
+		 initScreen();
+	 }
+		 
+	 else if(gameScreen == 1)
+	 {
 	 PImage backgroundImage = loadImage("background1.jpg");
 	checkKeyPresses();
    background(backgroundImage);
@@ -48,7 +59,27 @@ void setup(){
    displayUI.display();
    baseTurret.display();
    settings.timer++;
-
+}
+	else if(gameScreen == 2)
+	{
+		background(255, 255, 255);
+		fill(0, 0, 0);
+		textSize(20);
+		text("Back", 50, 50);
+		fill(0, 0, 0);
+		textSize(40);
+		text("Settings", width/2, height/5);
+		if((mouseX > 0)
+			&& (mouseX < 50)
+			&& (mouseY > 0)
+			&& (mouseY < 50))
+			{
+				if(mousePressed)
+				{
+					gameScreen = 0;
+				}
+			}
+	}
    
  } 
  
@@ -122,4 +153,44 @@ void setup(){
 	 }
  }
  
- //test
+ void initScreen()
+ {
+	 background(255, 255, 255);
+		 textSize(40);
+		 fill(0, 0, 0);
+		 text("Game Title", width/2, (height)/5);	 
+		 rectMode(CENTER);
+		 fill(0, 0, 0);
+		 rect(width/2, ((3*height)/5), 200, 50);
+		 textSize(30);		 
+		 fill(255, 255, 255);
+		 text("Start", width/2, ((3*height)/5));
+		 fill(30, 30, 30);
+		 rect(50, 50, 50, 50);
+		 if((mouseX > width/2 - 100)
+			 && ( mouseX < width/2 + 100)
+			 && (mouseY > (3*height)/5 - 25)
+			 && (mouseY < (3*height)/5 + 25))
+			 {
+			 fill(0, 0, 0);
+			 rect(width/2, ((3*height)/5), 220, 55);
+			 textSize(34);
+			 fill(255, 255, 255);
+			 text("Start", width/2, ((3*height)/5));
+			 if(mousePressed)
+			 {
+				 gameScreen = 1;
+			 }
+		 }
+		 if((mouseX > 0)
+			 && (mouseX < 100)
+			 && (mouseY > 0)
+			 && (mouseY < 100))
+			 {
+				 if(mousePressed)
+				 {
+					 gameScreen = 2;
+				 }
+			 }
+			 
+ }
