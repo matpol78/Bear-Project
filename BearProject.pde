@@ -12,7 +12,9 @@ List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
 List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 List<BulletLaser2> bulletLaser2 = new ArrayList<BulletLaser2>();
 int gameScreen = 0;
-
+//gameScreen = 0: initital screen
+//gameScreen = 1: playing the game
+//gameScreen = 2: settings
 
 
 void setup(){
