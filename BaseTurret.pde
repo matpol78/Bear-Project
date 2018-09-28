@@ -15,11 +15,16 @@ class BaseTurret {
 	private int blueRGBValue = 0;
 	
 	private int fireRate = 1;
+	private int turretTime = 0;
+	
+	List<BaseTurretBullet> baseTurretBullets = new ArrayList<BaseTurretBullet>();
+	
+	EnemyBasic closest;
 	
 	public BaseTurret(){}
 	
 	EnemyBasic determineClosestShip() {
-		EnemyBasic closest = basicEnemies.get(0);
+		closest = basicEnemies.get(0);
 		double smallestDistance = sqrt(basicEnemies.get(0).getDistanceFromBaseX()*basicEnemies.get(0).getDistanceFromBaseX()+basicEnemies.get(0).getDistanceFromBaseY()*basicEnemies.get(0).getDistanceFromBaseY());
 		//iterate through all the ships and apply the distance formula to determine the closest one
 		for (int i = 0; i < basicEnemies.size();i++){
@@ -36,15 +41,37 @@ class BaseTurret {
 		EnemyBasic closest= determineClosestShip();
 		posX = closest.getX();
 		posY = closest.getY();
+		
 	}
 	
 	public void display() {
 		if (basicEnemies.size() > 0) {
 			updatePos();
 		}		
+		turretTime++;
+		shoot();
+		checkForHit();
 		strokeWeight(lineStrokeWeight);
 		stroke(redRGBValue,greenRGBValue,blueRGBValue);
 		line(posX,posY,posX2,posY2);
+		for(int i = 0; i < baseTurretBullets.size(); i++) {
+			baseTurretBullets.get(i).display();
+		}
+	}
+	
+	void shoot() {
+		if (turretTime % 60 == 0) {
+			System.out.println("Made IT");
+			baseTurretBullets.add(new BaseTurretBullet(posX2,posY2,closest.getX(),closest.getY()));
+		}
+	}
+	
+	void checkForHit() {
+		if (baseTurretBullets.size() > 0 ) {
+			if (abs(baseTurretBullets.get(0).getX()-closest.getX()) <= 10 && abs(baseTurretBullets.get(0).getY()-closest.getY()) <= 10) {
+				baseTurretBullets.get(0).explode();
+			}
+		}
 	}
 	
 }

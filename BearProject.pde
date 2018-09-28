@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.Random;
 import static java.lang.Math.sqrt;
+import static java.lang.Math.abs;
 
 Grid grid;
 Base base;
