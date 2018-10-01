@@ -17,11 +17,15 @@ class BaseTurret {
 	private int fireRate = 1;
 	private int turretTime = 0;
 	
+	private int counter = 0;
+	
 	List<BaseTurretBullet> baseTurretBullets = new ArrayList<BaseTurretBullet>();
 	
 	EnemyBasic closest;
 	
 	public BaseTurret(){}
+	
+	
 	
 	EnemyBasic determineClosestShip() {
 		closest = basicEnemies.get(0);
@@ -45,6 +49,7 @@ class BaseTurret {
 	}
 	
 	public void display() {
+		System.out.println("BaseTurret Display Loop");
 		if (basicEnemies.size() > 0) {
 			updatePos();
 		}		
@@ -55,23 +60,33 @@ class BaseTurret {
 		stroke(redRGBValue,greenRGBValue,blueRGBValue);
 		line(posX,posY,posX2,posY2);
 		for(int i = 0; i < baseTurretBullets.size(); i++) {
+			System.out.println("Displaying Base Turret Bullets");
+			System.out.println(".");
 			baseTurretBullets.get(i).display();
 		}
 	}
 	
 	void shoot() {
-		if (turretTime % 60 == 0) {
-			System.out.println("Made IT");
+		if (turretTime % 30 == 0) {
+			//System.out.println("Made IT");
 			baseTurretBullets.add(new BaseTurretBullet(posX2,posY2,closest.getX(),closest.getY()));
 		}
 	}
 	
 	void checkForHit() {
+		System.out.println("Check For Hit");
 		if (baseTurretBullets.size() > 0 ) {
-			if (abs(baseTurretBullets.get(0).getX()-closest.getX()) <= 10 && abs(baseTurretBullets.get(0).getY()-closest.getY()) <= 10) {
-				baseTurretBullets.get(0).explode();
+			System.out.println("Bullets are not zero");
+			if (abs(baseTurretBullets.get(counter).getX()-closest.getX()) <= 100 && abs(baseTurretBullets.get(counter).getY()-closest.getY()) <= 100) {
+				System.out.println("We exploding this boi");
+				baseTurretBullets.get(counter).explode();
+				counter++;
 			}
 		}
 	}
 	
 }
+
+
+//I need to check bullet hits for all objects on screen, not just the closest one.
+

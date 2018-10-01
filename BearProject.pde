@@ -59,6 +59,7 @@ void setup(){
    displayUI.display();
    baseTurret.display();
    settings.timer++;
+   System.out.println(settings.timer);
 }
 	else if(gameScreen == 2)
 	{
