@@ -141,7 +141,15 @@ void setup(){
  
  void displayEnemies() {
 	for (int i = 0; i < basicEnemies.size(); i++) {
-		basicEnemies.get(i).display();
+		if (basicEnemies.size() == 0) {break;}
+		if(basicEnemies.get(i).isDead()) {
+			basicEnemies.remove(i);
+			continue;
+		}
+		else {
+			basicEnemies.get(i).display();
+		}
+		
 	}
 	 
  }
