@@ -68,7 +68,7 @@ class BaseTurret {
 	
 	void checkForHit() {
 		if (baseTurretBullets.size() > 0 ) {
-			if (abs(baseTurretBullets.get(0).getX()-closest.getX()) <= 10 && abs(baseTurretBullets.get(0).getY()-closest.getY()) <= 10) {
+			if (abs(baseTurretBullets.get(0).getX()-closest.getX()) <= 50 && abs(baseTurretBullets.get(0).getY()-closest.getY()) <= 50) {
 				baseTurretBullets.get(0).explode();
 			}
 		}
