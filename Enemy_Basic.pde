@@ -49,8 +49,8 @@ class EnemyBasic {
 		else {
 			posX += speed*dx;
 			posY += speed*dy;
-			System.out.print(dx + " ");
-			System.out.println(dy);
+			//System.out.print(dx + " ");
+			//System.out.println(dy);
 		}
 	}
 	
