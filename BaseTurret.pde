@@ -14,14 +14,18 @@ class BaseTurret {
 	private int greenRGBValue = 0;
 	private int blueRGBValue = 0;
 	
-	private int fireRate = 1;
+	private int fireRate = 2;
 	private int turretTime = 0;
+	
+	//private int counter = 0;
 	
 	List<BaseTurretBullet> baseTurretBullets = new ArrayList<BaseTurretBullet>();
 	
 	EnemyBasic closest;
 	
 	public BaseTurret(){}
+	
+	
 	
 	EnemyBasic determineClosestShip() {
 		closest = basicEnemies.get(0);
@@ -45,33 +49,54 @@ class BaseTurret {
 	}
 	
 	public void display() {
+		System.out.println("BaseTurret Display Loop");
 		if (basicEnemies.size() > 0) {
-			updatePos();
-		}		
-		turretTime++;
-		shoot();
-		checkForHit();
+			updatePos();		
+			turretTime++;
+			shoot();
+			checkForHit();
+		}
 		strokeWeight(lineStrokeWeight);
 		stroke(redRGBValue,greenRGBValue,blueRGBValue);
 		line(posX,posY,posX2,posY2);
 		for(int i = 0; i < baseTurretBullets.size(); i++) {
-			baseTurretBullets.get(i).display();
-		}
-	}
-	
-	void shoot() {
-		if (turretTime % 60 == 0) {
-			System.out.println("Made IT");
-			baseTurretBullets.add(new BaseTurretBullet(posX2,posY2,closest.getX(),closest.getY()));
-		}
-	}
-	
-	void checkForHit() {
-		if (baseTurretBullets.size() > 0 ) {
-			if (abs(baseTurretBullets.get(0).getX()-closest.getX()) <= 50 && abs(baseTurretBullets.get(0).getY()-closest.getY()) <= 50) {
-				baseTurretBullets.get(0).explode();
+			if(baseTurretBullets.size()==0) {break;}
+			if(baseTurretBullets.get(i).exploded()) {
+				baseTurretBullets.remove(i);
+				continue;
+			}
+			else {
+				baseTurretBullets.get(i).display();
 			}
 		}
 	}
 	
+	void shoot() {
+		if (turretTime % fireRate == 0) {
+			//System.out.println("Made IT");
+			baseTurretBullets.add(new BaseTurretBullet(posX2,posY2,closest.getX(),closest.getY()));
+		}
+	}
+	
+	
+	
+	void checkForHit() {
+		if(baseTurretBullets.size()>0) {
+			if(basicEnemies.size()>0) {
+				for (int bulletsIterator = 0; bulletsIterator < baseTurretBullets.size(); bulletsIterator++ ) {
+					for (int shipsIterator = 0; shipsIterator < basicEnemies.size(); shipsIterator++) {
+						if (abs(baseTurretBullets.get(bulletsIterator).getX()-basicEnemies.get(shipsIterator).getX()) <= 100 && abs(baseTurretBullets.get(bulletsIterator).getY()-basicEnemies.get(shipsIterator).getY()) <= 100) {
+						System.out.println("We exploding this boi");
+						baseTurretBullets.get(bulletsIterator).explode(basicEnemies.get(shipsIterator));
+			}
+					}
+				}
+			}
+		}
+	}
+	
+	
 }
+
+
+

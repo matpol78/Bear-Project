@@ -1,6 +1,7 @@
 class EnemyBasic {
 	
-	private int health; //has not been implemented
+	private int health = 50;
+	private boolean dead = false;
 	private int damage; //damage is currently linked to projectile type, this does nothing right now
 	//position variables
 	private int posX;
@@ -48,8 +49,8 @@ class EnemyBasic {
 		else {
 			posX += speed*dx;
 			posY += speed*dy;
-			System.out.print(dx + " ");
-			System.out.println(dy);
+			//System.out.print(dx + " ");
+			//System.out.println(dy);
 		}
 	}
 	
@@ -71,6 +72,17 @@ class EnemyBasic {
 	}
 	public int getDistanceFromBaseY() {
 		return (height-posY);
+	}
+	
+	public void damage(int damage) {
+		health -= damage;
+		if (health <= 0) {
+			dead = true;
+		}
+		return;
+	}
+	public boolean isDead() {
+		return dead;
 	}
 
 	

@@ -4,8 +4,7 @@ class BaseTurretBullet {
 	
 	
 	//damage variables
-	private int shieldDamage = 15;
-	private int baseDamage = 15;
+	private int damage = 25;
 	//explosion variables
 	private PImage explosion = loadImage("explosion.png");
 	private int explosionHeigh = 70;
@@ -18,7 +17,7 @@ class BaseTurretBullet {
 	private int posY2;
 	private double dy; 
 	private double dx;
-	private double speed = .01;
+	private double speed = .1;
 	private int lengthMultiplier = 20;
 	//image variables
 	//private PImage bullet = loadImage("laser1.png");
@@ -47,8 +46,9 @@ class BaseTurretBullet {
 		return allreadyExploded;
 	}
 	
-	public void explode() {
+	public void explode(EnemyBasic enemy) {
 		allreadyExploded = true;
+		enemy.damage(damage);
 	}
 	
 	//animates the movement of the projectile
@@ -63,12 +63,12 @@ class BaseTurretBullet {
 			else {
 				allreadyExploded = true;
 				image(explosion,posX,posY,explosionWidth,explosionHeigh);
-				if (shield.getHealth()>=0) {
+				/*if (shield.getHealth()>=0) {
 					shield.damageShield(shieldDamage);
 				}
 				else {
 					base.damageBase(baseDamage);
-				}
+				} */
 			}
 		}
 		//updates position creating animation
