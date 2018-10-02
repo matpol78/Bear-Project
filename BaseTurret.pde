@@ -95,18 +95,6 @@ class BaseTurret {
 		}
 	}
 	
-/*	void checkForHit() {
-		System.out.println("Check For Hit");
-		if (baseTurretBullets.size() > 0 ) {
-			System.out.println("Bullets are not zero");
-			if (abs(baseTurretBullets.get(counter).getX()-closest.getX()) <= 100 && abs(baseTurretBullets.get(counter).getY()-closest.getY()) <= 100) {
-				System.out.println("We exploding this boi");
-				baseTurretBullets.get(counter).explode();
-				counter++;
-			}
-		}
-	}
-	*/
 	
 }
 
