@@ -6,6 +6,7 @@ class Settings {
 	//timer --curently used to control the rate at which bullets spawn
 	int timer = 0;
 	
+	//
 	
 	//constructor
 	public Settings() {}

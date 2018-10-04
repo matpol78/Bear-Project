@@ -11,7 +11,7 @@ class Shield{
   
   public void display(){
 		
-    if(base.shield)
+    if(base.hasShield())
     {
       noFill();
 	  if (health > 200) {

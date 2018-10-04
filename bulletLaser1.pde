@@ -1,4 +1,4 @@
-class BulletLaser1 {
+/*class BulletLaser1 {
 	
 	
 	
@@ -109,3 +109,4 @@ class BulletLaser1 {
 
 
 }
+*/

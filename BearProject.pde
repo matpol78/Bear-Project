@@ -10,7 +10,7 @@ Settings settings;
 DisplayUI displayUI;
 BaseTurret baseTurret;
 List<EnemyBasic> basicEnemies = new ArrayList<EnemyBasic>();
-List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
+//List<BulletLaser1> bulletLaser1 = new ArrayList<BulletLaser1>();
 List<BulletLaser2> bulletLaser2 = new ArrayList<BulletLaser2>();
 int gameScreen = 0;
 //gameScreen = 0: initital screen
@@ -52,14 +52,14 @@ void setup(){
    grid.display();
    base.display();
    shield.display();
-   spawnBullets();
-   displayBulletLaser1();
-   displayBulletLaser2();
+   //spawnBullets();
+   //displayBulletLaser1();
+   //displayBulletLaser2();
    displayEnemies();
    displayUI.display();
    baseTurret.display();
    settings.timer++;
-   System.out.println(settings.timer);
+   //System.out.println(settings.timer);
 }
 	else if(gameScreen == 2)
 	{
@@ -114,7 +114,7 @@ void setup(){
 	
 	
  }
- void displayBulletLaser1() {
+ /*void displayBulletLaser1() {
 	 
 	 for (int i = bulletLaser1.size()-1; i >= 0; i--) {
 		 if (bulletLaser1.get(i).exploded()) {
@@ -125,7 +125,7 @@ void setup(){
 	 for (int i = 0; i < bulletLaser1.size(); i++) {
 		 bulletLaser1.get(i).display();
 	 }
- }
+ } */
   void displayBulletLaser2() {
 	  
 	 for (int i = bulletLaser2.size()-1; i >= 0; i--) {
@@ -142,7 +142,7 @@ void setup(){
  void displayEnemies() {
 	for (int i = 0; i < basicEnemies.size(); i++) {
 		if (basicEnemies.size() == 0) {break;}
-		if(basicEnemies.get(i).isDead()) {
+		if(basicEnemies.get(i).isDead()&&basicEnemies.get(i).hasNoBullets()) {
 			basicEnemies.remove(i);
 			continue;
 		}

@@ -50,7 +50,7 @@ class BulletLaser2 {
 	//animates the movement of the projectile
 	private void updatePos() {
 		//stops projectile when it reaches base and explodes it
-		if (posY >= settings.screenHeight-100) {
+		/*if (posY >= settings.screenHeight-100) {
 			dy = 0;
 			dx = 0;
 			if (allreadyExploded) {
@@ -66,34 +66,51 @@ class BulletLaser2 {
 					base.damageBase(baseDamage);
 				}
 			}
-		}
+		} */
 		//updates position creating animation
-		else {
+		//else {
 			posX += speed*dx;
 			posY += speed*dy;
 			posX2 = posX+lengthMultiplier;
 			posY2 = posY+lengthMultiplier;
 			//System.out.print(dx + " ");
 			//System.out.println(dy);
-		}
+		//}
 	}
 	
 	//displays the projectile if it hasnt exploded, called from main
 	public void display() {
-		if (allreadyExploded) {
-			
-		}
-		else {
-			updatePos();
-			strokeWeight(lineStrokeWeight);
-			stroke(redRGBValue,greenRGBValue,blueRGBValue);
-			line(posX,posY,posX2,posY2);
-			//image(bullet,posX,posY,imageWidth,imageHeight);
-		}
-		
-		
+		updatePos();
+		strokeWeight(lineStrokeWeight);
+		stroke(redRGBValue,greenRGBValue,blueRGBValue);
+		line(posX,posY,posX2,posY2);
+		//image(bullet,posX,posY,imageWidth,imageHeight);		
 	}
 	
+	//position getters
+	public int getX(){
+		return posX;
+	}
+	public int getY() {
+		return posY;
+	}
+	
+	public void setDy(int newDy) {
+		dy = newDy;
+	}
+	public void setDx(int newDx) {
+		dx = newDx;
+	}
+	
+	public void explode() {
+		allreadyExploded = true;
+	}
+	public int getBaseDamage() {
+		return baseDamage;
+	}
+	public int getShieldDamage(){
+		return shieldDamage;
+	}
 
 
 
