@@ -2,6 +2,7 @@ class EnemyBasic {
 	
 	private int health = 50;
 	private boolean dead = false;
+	private boolean hasBulletsOut = true;
 	private int damage; //damage is currently linked to projectile type, this does nothing right now
 	//position variables
 	private int posX;
@@ -13,7 +14,10 @@ class EnemyBasic {
 	private int imageHeight = 60;
 	private int imageWidth = 60;
 	private PImage model = loadImage("Enemy_Basic_Model.jpg");
-	 
+	//projectile variables
+	List<BulletLaser2> bulletLaser2v2 = new ArrayList<BulletLaser2>();
+	private int gunTime = 0;
+	private int fireRate = 10;
 	
 	
 	//constructors
@@ -56,8 +60,17 @@ class EnemyBasic {
 	
 	//displays the ship, called from main
 	public void display() {
-		updatePos();
-		image(model,posX,posY, imageWidth, imageHeight);
+		if (health<=0) {
+		}
+		else {
+			updatePos();
+			gunTime++;
+			shoot();
+			image(model,posX,posY, imageWidth, imageHeight);
+		}
+		checkForHit();
+		displayBullets();
+		
 	}
 	//position getters
 	public int getX(){
@@ -85,7 +98,47 @@ class EnemyBasic {
 		return dead;
 	}
 
+	void shoot() {
+		if (gunTime % fireRate == 0) {
+			bulletLaser2v2.add(new BulletLaser2(posX,posY));
+		}
+	}
 	
+	void checkForHit() {
+		if (bulletLaser2v2.size()>0) {
+			for (int i = 0; i < bulletLaser2v2.size(); i++ ) {
+				if (bulletLaser2v2.get(i).getY() >= settings.screenHeight-100) {
+					bulletLaser2v2.get(i).explode();
+					base.damageBase(bulletLaser2v2.get(i).getBaseDamage(), bulletLaser2v2.get(i).getShieldDamage());
+				}
+			}
+		}
+	}
+	
+	void displayBullets() {
+		for(int i = 0; i < bulletLaser2v2.size(); i++) {
+			if(bulletLaser2v2.size()==0) {
+				hasBulletsOut = false;
+				break;
+			}
+			if(bulletLaser2v2.get(i).exploded()) {
+				bulletLaser2v2.remove(i);
+				continue;
+			}
+			else {
+				bulletLaser2v2.get(i).display();
+			}
+		}
+	}
+	
+	boolean hasNoBullets() {
+		if (hasBulletsOut) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 	
 	
 	

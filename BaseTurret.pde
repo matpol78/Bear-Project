@@ -45,11 +45,12 @@ class BaseTurret {
 		EnemyBasic closest= determineClosestShip();
 		posX = closest.getX();
 		posY = closest.getY();
+
 		
 	}
 	
 	public void display() {
-		System.out.println("BaseTurret Display Loop");
+		//System.out.println("BaseTurret Display Loop");
 		if (basicEnemies.size() > 0) {
 			updatePos();		
 			turretTime++;
@@ -86,7 +87,7 @@ class BaseTurret {
 				for (int bulletsIterator = 0; bulletsIterator < baseTurretBullets.size(); bulletsIterator++ ) {
 					for (int shipsIterator = 0; shipsIterator < basicEnemies.size(); shipsIterator++) {
 						if (abs(baseTurretBullets.get(bulletsIterator).getX()-basicEnemies.get(shipsIterator).getX()) <= 100 && abs(baseTurretBullets.get(bulletsIterator).getY()-basicEnemies.get(shipsIterator).getY()) <= 100) {
-						System.out.println("We exploding this boi");
+						//System.out.println("We exploding this boi");
 						baseTurretBullets.get(bulletsIterator).explode(basicEnemies.get(shipsIterator));
 			}
 					}
